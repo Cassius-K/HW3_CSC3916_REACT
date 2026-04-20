@@ -29,6 +29,13 @@ export function setMovie(movie) {
     }
 }
 
+function searchMoviesSuccess(movies) {
+    return {
+        type: 'SEARCH_MOVIES_SUCCESS',
+        searchResults: movies
+    }
+}
+
 export function fetchMovie(movieId) {
     return dispatch => {
         return fetch(`${env.REACT_APP_API_URL}/movies?movieId=${movieId}&reviews=true`, {
