@@ -4,6 +4,7 @@ import MovieList from './components/movielist';
 import Movie from './components/movie';
 import Authentication from './components/authentication';
 import {HashRouter, Routes,  Route} from 'react-router-dom';
+import SearchResults from './components/SearchResults';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/movielist" element={<MovieList />}/>
           <Route path="/movie/:movieId" element={<Movie />}/>
           <Route path="/signin" element={<Authentication />}/>
+          <Route path="/search" element={<SearchResults />} />
           {/*... other routes */}
         </Routes>
       </HashRouter>
