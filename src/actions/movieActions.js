@@ -70,6 +70,7 @@ export function fetchMovies() {
             dispatch(moviesFetched(res));
         }).catch((e) => console.log(e));
     }
+}
 
 export function submitReview(reviewData) {
     return dispatch => {
@@ -99,5 +100,4 @@ export function submitReview(reviewData) {
             console.error("Error submitting review:", e);
         });
     }
-}
 }
