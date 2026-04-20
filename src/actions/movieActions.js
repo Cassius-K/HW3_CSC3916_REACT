@@ -31,7 +31,7 @@ export function setMovie(movie) {
 
 export function fetchMovie(movieId) {
     return dispatch => {
-        return fetch(`${env.REACT_APP_API_URL}/movies/${movieId}?reviews=true`, {
+        return fetch(`${env.REACT_APP_API_URL}/movies?movieId=${movieId}&reviews=true`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
@@ -45,7 +45,8 @@ export function fetchMovie(movieId) {
             }
             return response.json()
         }).then((res) => {
-            dispatch(movieFetched(res));
+            const movieData = Array.isArray(res) ? res[0] : res;
+            dispatch(movieFetched(movieData));
         }).catch((e) => console.log(e));
     }
 }
