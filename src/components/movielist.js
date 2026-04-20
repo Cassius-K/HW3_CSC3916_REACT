@@ -71,5 +71,5 @@ function MovieList() {
           ))}
         </Carousel>
       );
-
+}
 export default MovieList;
