@@ -76,6 +76,21 @@ const MovieDetail = () => {
         </ListGroupItem>
       </ListGroup>
 
+        <Card.Body className="card-body bg-white">
+        <h3>Reviews</h3>
+        {}
+        {selectedMovie.reviews && selectedMovie.reviews.length > 0 ? (
+          selectedMovie.reviews.map((review, i) => (
+            <p key={i}>
+              <b>{review.username}</b>&nbsp; {review.review} &nbsp; <BsStarFill />{' '}
+              {review.rating}
+            </p>
+          ))
+        ) : (
+          <p>No reviews yet.</p>
+        )}
+      </Card.Body>
+
       {/* Review Submission Form */}
       <Card.Body className="card-body bg-light text-dark mt-3 rounded">
         <h3>Leave a Review</h3>
@@ -106,21 +121,6 @@ const MovieDetail = () => {
                 Submit Review
             </Button>
         </Form>
-      </Card.Body>
-
-      <Card.Body className="card-body bg-white">
-        <h3>Reviews</h3>
-        {}
-        {selectedMovie.reviews && selectedMovie.reviews.length > 0 ? (
-          selectedMovie.reviews.map((review, i) => (
-            <p key={i}>
-              <b>{review.username}</b>&nbsp; {review.review} &nbsp; <BsStarFill />{' '}
-              {review.rating}
-            </p>
-          ))
-        ) : (
-          <p>No reviews yet.</p>
-        )}
       </Card.Body>
     </Card>
   );
