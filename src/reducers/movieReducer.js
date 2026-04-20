@@ -19,6 +19,9 @@ const movieReducer = (state = initialState, action) => {
             case constants.FETCH_MOVIE:
                   updated['selectedMovie'] = action.selectedMovie;
                   return updated;
+            case 'SEARCH_MOVIES_SUCCESS':
+                  updated['searchResults'] = action.payload;
+                  return updated;
             default:
                   return state;
       }
