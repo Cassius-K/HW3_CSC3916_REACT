@@ -70,4 +70,34 @@ export function fetchMovies() {
             dispatch(moviesFetched(res));
         }).catch((e) => console.log(e));
     }
+
+export function submitReview(reviewData) {
+    return dispatch => {
+        const token = localStorage.getItem('token');
+        const env = process.env;
+
+        return fetch(`${env.REACT_APP_API_URL}/reviews`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': token
+            },
+            body: JSON.stringify({
+                movieId: reviewData.movieId,
+                rating: Number(reviewData.rating), 
+                review: reviewData.reviewText
+            })
+        }).then((response) => {
+            if (!response.ok) {
+                throw Error(response.statusText);
+            }
+            return response.json();
+        }).then((res) => {
+            dispatch(fetchMovie(reviewData.movieId)); 
+        }).catch((e) => {
+            console.error("Error submitting review:", e);
+        });
+    }
+}
 }
