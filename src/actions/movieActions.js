@@ -118,9 +118,11 @@ export function searchMovies(query) {
         })
         .then(response => response.json())
         .then(res => {
-            if (res.success) {
-                // We will create this new action type in the reducer next
+            if (res.success && res.movies) {
                 dispatch({ type: 'SEARCH_MOVIES_SUCCESS', payload: res.movies });
+            }
+            else {
+                dispatch({ type: 'SEARCH_MOVIES_SUCCESS', payload: [] });
             }
         })
         .catch(e => console.error("Search failed:", e));
