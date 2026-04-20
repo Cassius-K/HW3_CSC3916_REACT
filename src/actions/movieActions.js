@@ -101,3 +101,28 @@ export function submitReview(reviewData) {
         });
     }
 }
+
+export function searchMovies(query) {
+    return dispatch => {
+        const token = localStorage.getItem('token');
+        const env = process.env;
+
+        return fetch(`${env.REACT_APP_API_URL}/movies/search`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': token
+            },
+            body: JSON.stringify({ query: query })
+        })
+        .then(response => response.json())
+        .then(res => {
+            if (res.success) {
+                // We will create this new action type in the reducer next
+                dispatch({ type: 'SEARCH_MOVIES_SUCCESS', payload: res.movies });
+            }
+        })
+        .catch(e => console.error("Search failed:", e));
+    }
+}
